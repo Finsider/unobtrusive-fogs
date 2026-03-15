@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "unobtrusive-fogs",
+	"id": "unobtrusive-fog",
 	"version": "${version}",
-	"name": "Unobtrusive Fogs",
+	"name": "Unobtrusive Fog",
 	"description": "Adds Selective and Toggleable Unobtrusive Fog",
 	"authors": [
 		"Finside"
@@ -11,14 +11,14 @@
 	"environment": "*",
     "entrypoints": {
       "main": [
-        "fin.unobtrusivefogs.Main"
+        "fin.unobtrusivefog.Main"
       ],
       "modmenu": [
-        "fin.unobtrusivefogs.ModMenuIntegration"
+        "fin.unobtrusivefog.ModMenuIntegration"
       ]
     },
 	"mixins": [
-      "unobtrusive-fogs.mixins.json"
+      "unobtrusive-fog.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.18.4",

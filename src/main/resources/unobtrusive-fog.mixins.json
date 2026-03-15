@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "fin.unobtrusivefogs.mixin",
+  "package": "fin.unobtrusivefog.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
   ],

@@ -1,9 +1,9 @@
-package fin.unobtrusivefogs.mixin;
+package fin.unobtrusivefog.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import fin.unobtrusivefogs.FogRenderType;
-import fin.unobtrusivefogs.Main;
-import fin.unobtrusivefogs.Settings;
+import fin.unobtrusivefog.FogRenderType;
+import fin.unobtrusivefog.Main;
+import fin.unobtrusivefog.Settings;
 import net.minecraft.block.enums.CameraSubmersionType;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.RenderTickCounter;

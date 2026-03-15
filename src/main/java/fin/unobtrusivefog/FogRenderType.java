@@ -1,4 +1,4 @@
-package fin.unobtrusivefogs;
+package fin.unobtrusivefog;
 
 public enum FogRenderType {
     VANILLA,

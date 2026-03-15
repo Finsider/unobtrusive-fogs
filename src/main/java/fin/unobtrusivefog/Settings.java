@@ -1,10 +1,10 @@
-package fin.unobtrusivefogs;
+package fin.unobtrusivefog;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-@Config(name = "unobtrusive-fogs")
+@Config(name = "unobtrusive-fog")
 public class Settings implements ConfigData {
 
     @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)

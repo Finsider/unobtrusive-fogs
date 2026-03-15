@@ -1,4 +1,4 @@
-package fin.unobtrusivefogs;
+package fin.unobtrusivefog;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
