@@ -32,18 +32,20 @@ public class FogRendererMixin {
 
         // peak code writing here
         if (!SETTINGS.applyToAll) {
-            if (entity instanceof LivingEntity le && (
-                    (le.hasStatusEffect(StatusEffects.DARKNESS) && !SETTINGS.applyToDarkessFog) ||
-                    (le.hasStatusEffect(StatusEffects.BLINDNESS) && !SETTINGS.applyToBlindnessFog)
-            )) return;
+            if (
+                (entity instanceof LivingEntity le && (
+                        (!SETTINGS.applyToDarkessFog && le.hasStatusEffect(StatusEffects.DARKNESS)) ||
+                        (!SETTINGS.applyToBlindnessFog && le.hasStatusEffect(StatusEffects.BLINDNESS))
+                )) ||
 
-            if (cameraSubmersionType == CameraSubmersionType.LAVA && !SETTINGS.applyToLavaFog) return;
-            if (cameraSubmersionType == CameraSubmersionType.WATER && !SETTINGS.applyToWaterFog) return;
-            if (cameraSubmersionType == CameraSubmersionType.POWDER_SNOW && !SETTINGS.applyToSnowFog) return;
-            if (cameraSubmersionType == CameraSubmersionType.ATMOSPHERIC && !SETTINGS.applyToAtmosphericFog) return;
+                (!SETTINGS.applyToLavaFog && cameraSubmersionType == CameraSubmersionType.LAVA) ||
+                (!SETTINGS.applyToWaterFog && cameraSubmersionType == CameraSubmersionType.WATER) ||
+                (!SETTINGS.applyToSnowFog && cameraSubmersionType == CameraSubmersionType.POWDER_SNOW) ||
+                (!SETTINGS.applyToAtmosphericFog && cameraSubmersionType == CameraSubmersionType.ATMOSPHERIC) ||
 
-            if (clientWorld.getRegistryKey() == World.NETHER && !SETTINGS.applyToNetherFog) return;
-            if (clientWorld.getRegistryKey() == World.END && !SETTINGS.applyToEndFog) return;
+                (!SETTINGS.applyToNetherFog && clientWorld.getRegistryKey() == World.NETHER) ||
+                (!SETTINGS.applyToEndFog && clientWorld.getRegistryKey() == World.END)
+            ) return;
         }
 
         float fogEnd = viewDistance * 16;
