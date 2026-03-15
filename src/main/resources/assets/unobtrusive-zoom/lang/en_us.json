@@ -1,0 +1,19 @@
+{
+  "text.autoconfig.unobtrusive-fogs.title": "Unobtrusive Fogs",
+
+  "text.autoconfig.unobtrusive-fogs.option.renderDistanceFogType": "Render Distance Fog",
+  "text.autoconfig.unobtrusive-fogs.option.environmentalFogType": "Environmental Fog",
+
+  "text.autoconfig.unobtrusive-fogs.option.applyToAll.@PrefixText": "Apply the Fog to: ",
+  "text.autoconfig.unobtrusive-fogs.option.applyToAll": "All",
+  "text.autoconfig.unobtrusive-fogs.option.applyToNetherFog": "Nether Dimension",
+  "text.autoconfig.unobtrusive-fogs.option.applyToEndFog": "End Dimension",
+
+  "text.autoconfig.unobtrusive-fogs.option.applyToAtmosphericFog": "Atmospheric (Overworld)",
+  "text.autoconfig.unobtrusive-fogs.option.applyToWaterFog": "Water",
+  "text.autoconfig.unobtrusive-fogs.option.applyToLavaFog": "Lava",
+  "text.autoconfig.unobtrusive-fogs.option.applyToSnowFog": "Powder Snow",
+
+  "text.autoconfig.unobtrusive-fogs.option.applyToBlindnessFog": "Blindness Effect",
+  "text.autoconfig.unobtrusive-fogs.option.applyToDarkessFog": "Darkness Effect"
+}

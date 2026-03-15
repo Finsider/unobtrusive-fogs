@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "unobtrusive-fogs",
+	"version": "${version}",
+	"name": "Unobtrusive Fogs",
+	"description": "Adds Selective and Toggleable Unobtrusive Fog",
+	"authors": [
+		"Finside"
+	],
+	"license": "CC0-1.0",
+	"environment": "*",
+    "entrypoints": {
+      "main": [
+        "fin.unobtrusivefogs.Main"
+      ],
+      "modmenu": [
+        "fin.unobtrusivefogs.ModMenuIntegration"
+      ]
+    },
+	"mixins": [
+      "unobtrusive-fogs.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21"
+	}
+}
