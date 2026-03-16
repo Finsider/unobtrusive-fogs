@@ -27,8 +27,14 @@ public class FogRendererMixin {
     @Unique
     private static final Settings SETTINGS = Main.settings;
 
-    @Inject(method = "applyFog(Lnet/minecraft/client/render/Camera;ILnet/minecraft/client/render/RenderTickCounter;FLnet/minecraft/client/world/ClientWorld;)Lorg/joml/Vector4f;", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;getDevice()Lcom/mojang/blaze3d/systems/GpuDevice;"))
-    private void modifyFog(Camera camera, int viewDistance, RenderTickCounter renderTickCounter, float f, ClientWorld clientWorld, CallbackInfoReturnable<Vector4f> cir, @Local CameraSubmersionType cameraSubmersionType, @Local Entity entity, @Local FogData fogData) {
+    @Inject(
+            method = "applyFog(Lnet/minecraft/client/render/Camera;IZLnet/minecraft/client/render/RenderTickCounter;FLnet/minecraft/client/world/ClientWorld;)Lorg/joml/Vector4f;",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lcom/mojang/blaze3d/systems/RenderSystem;getDevice()Lcom/mojang/blaze3d/systems/GpuDevice;"
+            )
+    )
+    private void modifyFog(Camera camera, int viewDistance, boolean thick, RenderTickCounter tickCounter, float skyDarkness, ClientWorld world, CallbackInfoReturnable<Vector4f> cir, @Local CameraSubmersionType cameraSubmersionType, @Local Entity entity, @Local FogData fogData) {
 
         // peak code writing here
         if (!SETTINGS.applyToAll) {
@@ -43,8 +49,8 @@ public class FogRendererMixin {
                 (!SETTINGS.applyToSnowFog && cameraSubmersionType == CameraSubmersionType.POWDER_SNOW) ||
                 (!SETTINGS.applyToAtmosphericFog && cameraSubmersionType == CameraSubmersionType.ATMOSPHERIC) ||
 
-                (!SETTINGS.applyToNetherFog && clientWorld.getRegistryKey() == World.NETHER) ||
-                (!SETTINGS.applyToEndFog && clientWorld.getRegistryKey() == World.END)
+                (!SETTINGS.applyToNetherFog && world.getRegistryKey() == World.NETHER) ||
+                (!SETTINGS.applyToEndFog && world.getRegistryKey() == World.END)
             ) return;
         }
 
