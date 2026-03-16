@@ -1,6 +1,5 @@
 package fin.unobtrusivefog.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import fin.unobtrusivefog.FogRenderType;
 import fin.unobtrusivefog.Main;
 import fin.unobtrusivefog.Settings;
