@@ -10,15 +10,12 @@ public class Settings implements ConfigData {
     @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
     public FogRenderType renderDistanceFogType = FogRenderType.UNOBTRUSIVE;
 
-    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
-    public FogRenderType environmentalFogType = FogRenderType.UNOBTRUSIVE;
-
     @ConfigEntry.Gui.PrefixText
     public boolean applyToAll = false;
+    public boolean applyToOverworld = true;
     public boolean applyToNetherFog = true;
     public boolean applyToEndFog = true;
 
-    public boolean applyToAtmosphericFog = true;
     public boolean applyToWaterFog = false;
     public boolean applyToLavaFog = false;
     public boolean applyToSnowFog = false;

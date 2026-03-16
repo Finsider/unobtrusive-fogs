@@ -8,8 +8,8 @@
   "text.autoconfig.unobtrusive-fog.option.applyToAll": "All",
   "text.autoconfig.unobtrusive-fog.option.applyToNetherFog": "Nether Dimension",
   "text.autoconfig.unobtrusive-fog.option.applyToEndFog": "End Dimension",
+  "text.autoconfig.unobtrusive-fog.option.applyToOverworld": "Overworld",
 
-  "text.autoconfig.unobtrusive-fog.option.applyToAtmosphericFog": "Atmospheric (Overworld)",
   "text.autoconfig.unobtrusive-fog.option.applyToWaterFog": "Water",
   "text.autoconfig.unobtrusive-fog.option.applyToLavaFog": "Lava",
   "text.autoconfig.unobtrusive-fog.option.applyToSnowFog": "Powder Snow",
