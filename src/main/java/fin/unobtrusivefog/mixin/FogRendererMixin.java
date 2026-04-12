@@ -4,16 +4,16 @@ import com.llamalad7.mixinextras.sugar.Local;
 import fin.unobtrusivefog.FogRenderType;
 import fin.unobtrusivefog.Main;
 import fin.unobtrusivefog.Settings;
-import net.minecraft.block.enums.CameraSubmersionType;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.client.render.fog.FogData;
-import net.minecraft.client.render.fog.FogRenderer;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.world.World;
+import net.minecraft.client.Camera;
+import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.fog.FogData;
+import net.minecraft.client.renderer.fog.FogRenderer;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.FogType;
 import org.joml.Vector4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,24 +27,24 @@ public class FogRendererMixin {
     @Unique
     private static final Settings SETTINGS = Main.settings;
 
-    @Inject(method = "applyFog(Lnet/minecraft/client/render/Camera;ILnet/minecraft/client/render/RenderTickCounter;FLnet/minecraft/client/world/ClientWorld;)Lorg/joml/Vector4f;", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;getDevice()Lcom/mojang/blaze3d/systems/GpuDevice;"))
-    private void modifyFog(Camera camera, int viewDistance, RenderTickCounter renderTickCounter, float f, ClientWorld clientWorld, CallbackInfoReturnable<Vector4f> cir, @Local CameraSubmersionType cameraSubmersionType, @Local Entity entity, @Local FogData fogData) {
+    @Inject(method = "setupFog", at = @At("RETURN"))
+    private void modifyFog(Camera camera, int viewDistance, DeltaTracker renderTickCounter, float f, ClientLevel clientWorld, CallbackInfoReturnable<Vector4f> cir, @Local FogType cameraSubmersionType, @Local Entity entity, @Local FogData fogData) {
 
         // peak code writing here
         if (!SETTINGS.applyToAll) {
             if (
                 (entity instanceof LivingEntity le && (
-                        (!SETTINGS.applyToDarkessFog && le.hasStatusEffect(StatusEffects.DARKNESS)) ||
-                        (!SETTINGS.applyToBlindnessFog && le.hasStatusEffect(StatusEffects.BLINDNESS))
+                        (!SETTINGS.applyToDarkessFog && le.hasEffect(MobEffects.DARKNESS)) ||
+                        (!SETTINGS.applyToBlindnessFog && le.hasEffect(MobEffects.BLINDNESS))
                 )) ||
 
-                (!SETTINGS.applyToLavaFog && cameraSubmersionType == CameraSubmersionType.LAVA) ||
-                (!SETTINGS.applyToWaterFog && cameraSubmersionType == CameraSubmersionType.WATER) ||
-                (!SETTINGS.applyToSnowFog && cameraSubmersionType == CameraSubmersionType.POWDER_SNOW) ||
-                (!SETTINGS.applyToAtmosphericFog && cameraSubmersionType == CameraSubmersionType.ATMOSPHERIC) ||
+                (!SETTINGS.applyToLavaFog && cameraSubmersionType == FogType.LAVA) ||
+                (!SETTINGS.applyToWaterFog && cameraSubmersionType == FogType.WATER) ||
+                (!SETTINGS.applyToSnowFog && cameraSubmersionType == FogType.POWDER_SNOW) ||
+                (!SETTINGS.applyToAtmosphericFog && cameraSubmersionType == FogType.ATMOSPHERIC) ||
 
-                (!SETTINGS.applyToNetherFog && clientWorld.getRegistryKey() == World.NETHER) ||
-                (!SETTINGS.applyToEndFog && clientWorld.getRegistryKey() == World.END)
+                (!SETTINGS.applyToNetherFog && clientWorld.dimension() == Level.NETHER) ||
+                (!SETTINGS.applyToEndFog && clientWorld.dimension() == Level.END)
             ) return;
         }
 
